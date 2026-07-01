@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* La Cabecera se muestra en todas las paginas*/}
+      {/* La Cabecera aparece en todas las paginas*/}
       <Cabecera usuario={usuario} cerrarSesion={cerrarSesion} />
 
       <Routes>

@@ -13,9 +13,7 @@ import Perfil from "./pages/Perfil";
 import Cabecera from "./components/Cabecera";
 
 function App() {
-  // El usuario logueado vive aqui, en el componente raiz.
-  // Lo pasaremos por props a los componentes que lo necesiten,
-  // igual que hicimos con los compositores y el puerto deportivo.
+  // El usuario logueado se guarda aqui, en el componente raiz.
   let usuarioGuardado = localStorage.getItem("usuario");
   let [usuario, setUsuario] = useState(
     usuarioGuardado ? JSON.parse(usuarioGuardado) : null
@@ -33,8 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* La Cabecera se muestra en todas las paginas, igual que en el ejercicio
-          de compositores donde la cabecera estaba fuera de las Routes */}
+      {/* La Cabecera se muestra en todas las paginas*/}
       <Cabecera usuario={usuario} cerrarSesion={cerrarSesion} />
 
       <Routes>

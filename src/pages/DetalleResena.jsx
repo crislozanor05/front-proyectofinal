@@ -9,13 +9,11 @@ function DetalleResena({ usuario }) {
   let [cargando, setCargando] = useState(true);
   let [error, setError] = useState("");
 
-  // useParams igual que en M3-5: leemos el :id de la URL
+
   let params = useParams();
   let id = params.id;
 
   useEffect(function () {
-    // Pedimos la reseña y sus comentarios al mismo tiempo con Promise.all,
-    // igual que en el ejercicio de Rick y Morty
     Promise.all([
       obtenerResena(id),
       obtenerComentarios(id)
@@ -36,8 +34,7 @@ function DetalleResena({ usuario }) {
 
     crearComentario(usuario._id, id, textoComentario)
       .then(function (nuevoComentario) {
-        // Añadimos el nuevo comentario al array sin recargar la pagina,
-        // igual que cuando añadiamos compositores al array en clase
+        // Añadir el nuevo comentario al array sin recargar la pagina
         setComentarios([...comentarios, nuevoComentario]);
         setTextoComentario("");
       })

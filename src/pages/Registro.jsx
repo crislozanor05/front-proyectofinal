@@ -28,9 +28,7 @@ function Registro({ iniciarSesion }) {
         navigate("/");
       })
       .catch(function (err) {
-        // Aqui llegaran los mensajes de validacion:
-        // "Ese nombre de usuario ya está en uso"
-        // "La contraseña debe tener al menos 8 caracteres"
+        // Aqui llegaran los mensajes de validacion
         setError(err.message);
       });
   }

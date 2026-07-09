@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { eliminarCuenta } from "../services/api";
+import "./Perfil.css";
 
 function Perfil({ usuario, cerrarSesion }) {
   let [error, setError] = useState("");
@@ -8,7 +9,7 @@ function Perfil({ usuario, cerrarSesion }) {
 
   if (usuario === null) {
     return (
-      <main>
+      <main className="perfil">
         <p>Tienes que iniciar sesión para ver tu perfil.</p>
       </main>
     );
@@ -34,18 +35,26 @@ function Perfil({ usuario, cerrarSesion }) {
   }
 
   return (
-    <main>
-      <h1>Mi perfil</h1>
-      <p>Usuario: {usuario.username}</p>
+    <main className="perfil">
+      <h1 className="perfil__titulo">Mi perfil</h1>
 
-      {error !== "" && <p>{error}</p>}
+      <div className="perfil__tarjeta">
+        <p className="perfil__dato">
+          Usuario: <span>{usuario.username}</span>
+        </p>
+      </div>
 
-      <hr />
-
-      <h2>Zona de peligro</h2>
-      <button onClick={handleEliminarCuenta}>
-        Eliminar mi cuenta
-      </button>
+      <div className="perfil__zona-peligro">
+        <h2>Zona de peligro</h2>
+        <p>Esta acción es irreversible. Se eliminarán tu cuenta, tus reseñas y tus comentarios.</p>
+        <button
+          className="perfil__boton-eliminar"
+          onClick={handleEliminarCuenta}
+        >
+          Eliminar mi cuenta
+        </button>
+        {error !== "" && <p className="perfil__error">{error}</p>}
+      </div>
     </main>
   );
 }

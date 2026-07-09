@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { crearResena } from "../services/api";
+import "./Formulario.css";
 
 function NuevaResena({ usuario }) {
   let [cancion, setCancion] = useState("");
@@ -11,10 +12,9 @@ function NuevaResena({ usuario }) {
 
   let navigate = useNavigate();
 
-  // Si no hay usuario logueado, no dejamos acceder a esta pagina
   if (usuario === null) {
     return (
-      <main>
+      <main className="formulario-pagina">
         <p>Tienes que iniciar sesión para escribir una reseña.</p>
       </main>
     );
@@ -34,55 +34,59 @@ function NuevaResena({ usuario }) {
   }
 
   return (
-    <main>
-      <h1>Nueva reseña</h1>
+    <main className="formulario-pagina">
+      <h1 className="formulario-pagina__titulo">Nueva reseña</h1>
+      <p className="formulario-pagina__subtitulo">Comparte lo que estás escuchando</p>
 
-      {error !== "" && <p>{error}</p>}
+      <form className="formulario" onSubmit={handleSubmit}>
+        {error !== "" && <p className="formulario__error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <div className="formulario__campo">
           <label>Canción</label>
           <input
             type="text"
             value={cancion}
             onChange={function (e) { setCancion(e.target.value); }}
+            placeholder="Nombre de la canción"
           />
         </div>
 
-        <div>
+        <div className="formulario__campo">
           <label>Artista</label>
           <input
             type="text"
             value={artista}
             onChange={function (e) { setArtista(e.target.value); }}
+            placeholder="Nombre del artista"
           />
         </div>
 
-        <div>
+        <div className="formulario__campo">
           <label>Nota (1-5)</label>
           <select
             value={nota}
             onChange={function (e) { setNota(e.target.value); }}
           >
             <option value="">-- Elige una nota --</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="1">⭐ 1 — Malo</option>
+            <option value="2">⭐⭐ 2 — Regular</option>
+            <option value="3">⭐⭐⭐ 3 — Bien</option>
+            <option value="4">⭐⭐⭐⭐ 4 — Muy bien</option>
+            <option value="5">⭐⭐⭐⭐⭐ 5 — Obra maestra</option>
           </select>
         </div>
 
-        <div>
+        <div className="formulario__campo">
           <label>Tu reseña</label>
           <textarea
             value={texto}
             onChange={function (e) { setTexto(e.target.value); }}
+            placeholder="Cuéntanos qué te parece..."
             rows="4"
           />
         </div>
 
-        <button type="submit">Publicar reseña</button>
+        <button className="formulario__boton" type="submit">Publicar reseña</button>
       </form>
     </main>
   );

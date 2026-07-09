@@ -1,22 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginUsuario } from "../services/api";
+import "./Formulario.css";
 
 function Login({ iniciarSesion }) {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [error, setError] = useState("");
 
-  // useNavigate nos permite navegar a otra pagina desde codigo JavaScript, sin que el usuario tenga que hacer click en un Link.
   let navigate = useNavigate();
-
-  function cambiarUsername(event) {
-    setUsername(event.target.value);
-  }
-
-  function cambiarPassword(event) {
-    setPassword(event.target.value);
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -24,9 +16,7 @@ function Login({ iniciarSesion }) {
 
     loginUsuario(username, password)
       .then(function (datos) {
-        // Guardamos el usuario en el estado de App (a traves de la prop iniciarSesion)
         iniciarSesion(datos.usuario);
-        // Redirigimos al feed
         navigate("/");
       })
       .catch(function (err) {
@@ -35,32 +25,39 @@ function Login({ iniciarSesion }) {
   }
 
   return (
-    <main>
-      <h1>Iniciar sesión</h1>
+    <main className="formulario-pagina">
+      <h1 className="formulario-pagina__titulo">Bienvenido</h1>
+      <p className="formulario-pagina__subtitulo">Inicia sesión para compartir tu música</p>
 
-      {error !== "" && <p>{error}</p>}
+      <form className="formulario" onSubmit={handleSubmit}>
+        {error !== "" && <p className="formulario__error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <div className="formulario__campo">
           <label>Nombre de usuario</label>
           <input
             type="text"
             value={username}
-            onChange={cambiarUsername}
+            onChange={function (e) { setUsername(e.target.value); }}
+            placeholder="Tu nombre de usuario"
           />
         </div>
 
-        <div>
+        <div className="formulario__campo">
           <label>Contraseña</label>
           <input
             type="password"
             value={password}
-            onChange={cambiarPassword}
+            onChange={function (e) { setPassword(e.target.value); }}
+            placeholder="Tu contraseña"
           />
         </div>
 
-        <button type="submit">Entrar</button>
+        <button className="formulario__boton" type="submit">Entrar</button>
       </form>
+
+      <p className="formulario__link">
+        ¿No tienes cuenta? <Link to="/registro">Regístrate</Link>
+      </p>
     </main>
   );
 }

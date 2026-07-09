@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { obtenerResena, obtenerComentarios, crearComentario } from "../services/api";
+import "./DetalleResena.css";
 
 function DetalleResena({ usuario }) {
   let [resena, setResena] = useState(null);
@@ -8,7 +9,6 @@ function DetalleResena({ usuario }) {
   let [textoComentario, setTextoComentario] = useState("");
   let [cargando, setCargando] = useState(true);
   let [error, setError] = useState("");
-
 
   let params = useParams();
   let id = params.id;
@@ -34,7 +34,6 @@ function DetalleResena({ usuario }) {
 
     crearComentario(usuario._id, id, textoComentario)
       .then(function (nuevoComentario) {
-        // Añadir el nuevo comentario al array sin recargar la pagina
         setComentarios([...comentarios, nuevoComentario]);
         setTextoComentario("");
       })
@@ -44,52 +43,58 @@ function DetalleResena({ usuario }) {
   }
 
   if (cargando) {
-    return <p>Cargando...</p>;
+    return <p className="feed__cargando">Cargando...</p>;
   }
 
   if (error !== "") {
-    return <p>Error: {error}</p>;
+    return <p className="feed__error">Error: {error}</p>;
   }
 
   return (
-    <main>
-      <h1>{resena.cancion}</h1>
-      <h2>{resena.artista}</h2>
-      <p>Nota: {resena.nota}/5</p>
-      <p>{resena.texto}</p>
-      <small>Por {resena.nombreUsuario}</small>
+    <main className="detalle">
+      <Link to="/" className="detalle__volver">← Volver al feed</Link>
 
-      <hr />
+      <h1 className="detalle__cancion">{resena.cancion}</h1>
+      <p className="detalle__artista">{resena.artista}</p>
+      <span className="detalle__nota">⭐ {resena.nota}/5</span>
+      <p className="detalle__texto">{resena.texto}</p>
+      <small className="detalle__autor">Por {resena.nombreUsuario}</small>
 
-      <h3>Comentarios ({comentarios.length})</h3>
+      <hr className="detalle__separador" />
 
-      {comentarios.length === 0 && <p>Todavía no hay comentarios.</p>}
+      <h2 className="detalle__titulo-comentarios">
+        Comentarios ({comentarios.length})
+      </h2>
 
-      <ul>
+      {comentarios.length === 0 && (
+        <p className="comentarios__vacio">Todavía no hay comentarios. ¡Sé el primero!</p>
+      )}
+
+      <ul className="comentarios__lista">
         {comentarios.map(function (comentario) {
           return (
-            <li key={comentario._id}>
-              <strong>{comentario.nombreUsuario}</strong>
-              <p>{comentario.texto}</p>
+            <li key={comentario._id} className="comentario">
+              <p className="comentario__autor">{comentario.nombreUsuario}</p>
+              <p className="comentario__texto">{comentario.texto}</p>
             </li>
           );
         })}
       </ul>
 
-      {usuario !== null && (
-        <form onSubmit={enviarComentario}>
+      {usuario !== null ? (
+        <form className="comentarios__form" onSubmit={enviarComentario}>
           <textarea
             value={textoComentario}
             onChange={function (e) { setTextoComentario(e.target.value); }}
             placeholder="Escribe un comentario..."
             rows="3"
           />
-          <button type="submit">Comentar</button>
+          <button className="comentarios__boton" type="submit">Comentar</button>
         </form>
-      )}
-
-      {usuario === null && (
-        <p>Inicia sesión para dejar un comentario.</p>
+      ) : (
+        <p className="comentarios__aviso">
+          <Link to="/login">Inicia sesión</Link> para dejar un comentario.
+        </p>
       )}
     </main>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registrarUsuario } from "../services/api";
+import "./Formulario.css";
 
 function Registro({ iniciarSesion }) {
   let [username, setUsername] = useState("");
@@ -9,57 +10,54 @@ function Registro({ iniciarSesion }) {
 
   let navigate = useNavigate();
 
-  function cambiarUsername(event) {
-    setUsername(event.target.value);
-  }
-
-  function cambiarPassword(event) {
-    setPassword(event.target.value);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     setError("");
 
     registrarUsuario(username, password)
       .then(function (datos) {
-        // Tras registrarse, inicia sesion automaticamente
         iniciarSesion(datos.usuario);
         navigate("/");
       })
       .catch(function (err) {
-        // Aqui llegaran los mensajes de validacion
         setError(err.message);
       });
   }
 
   return (
-    <main>
-      <h1>Crear cuenta</h1>
+    <main className="formulario-pagina">
+      <h1 className="formulario-pagina__titulo">Crear cuenta</h1>
+      <p className="formulario-pagina__subtitulo">Únete a la comunidad de música</p>
 
-      {error !== "" && <p>{error}</p>}
+      <form className="formulario" onSubmit={handleSubmit}>
+        {error !== "" && <p className="formulario__error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <div className="formulario__campo">
           <label>Nombre de usuario</label>
           <input
             type="text"
             value={username}
-            onChange={cambiarUsername}
+            onChange={function (e) { setUsername(e.target.value); }}
+            placeholder="Elige un nombre de usuario"
           />
         </div>
 
-        <div>
+        <div className="formulario__campo">
           <label>Contraseña (mínimo 8 caracteres)</label>
           <input
             type="password"
             value={password}
-            onChange={cambiarPassword}
+            onChange={function (e) { setPassword(e.target.value); }}
+            placeholder="Mínimo 8 caracteres"
           />
         </div>
 
-        <button type="submit">Crear cuenta</button>
+        <button className="formulario__boton" type="submit">Crear cuenta</button>
       </form>
+
+      <p className="formulario__link">
+        ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+      </p>
     </main>
   );
 }

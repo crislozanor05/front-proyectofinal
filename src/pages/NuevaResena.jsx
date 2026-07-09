@@ -68,11 +68,11 @@ function NuevaResena({ usuario }) {
             onChange={function (e) { setNota(e.target.value); }}
           >
             <option value="">-- Elige una nota --</option>
-            <option value="1">⭐ 1 — Malo</option>
-            <option value="2">⭐⭐ 2 — Regular</option>
-            <option value="3">⭐⭐⭐ 3 — Bien</option>
-            <option value="4">⭐⭐⭐⭐ 4 — Muy bien</option>
-            <option value="5">⭐⭐⭐⭐⭐ 5 — Obra maestra</option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐ </option>
+            <option value="3">⭐⭐⭐ </option>
+            <option value="4">⭐⭐⭐⭐ </option>
+            <option value="5">⭐⭐⭐⭐⭐ </option>
           </select>
         </div>
 

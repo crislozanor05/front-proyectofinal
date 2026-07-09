@@ -1,0 +1,73 @@
+.cabecera {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cabecera__logo {
+  font-size: 1.6rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #e94560, #f5a623);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.05em;
+}
+
+.cabecera__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cabecera__saludo {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.cabecera__link {
+  color: #f0f0f0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+
+.cabecera__link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cabecera__link--destacado {
+  background: linear-gradient(90deg, #e94560, #f5a623);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+
+.cabecera__link--destacado:hover {
+  opacity: 0.85;
+}
+
+.cabecera__boton-cerrar {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cabecera__boton-cerrar:hover {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+}

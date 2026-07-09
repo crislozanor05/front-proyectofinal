@@ -1,0 +1,96 @@
+.feed {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.feed__titulo {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #e94560, #f5a623);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.feed__subtitulo {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+}
+
+.feed__lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feed__vacio {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 60px 0;
+  font-size: 1.1rem;
+}
+
+.feed__cargando {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 60px 0;
+}
+
+.feed__error {
+  text-align: center;
+  color: #e94560;
+  padding: 40px 0;
+}
+
+.tarjeta-resena {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.2s, background 0.2s;
+  display: block;
+  color: #f0f0f0;
+}
+
+.tarjeta-resena:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tarjeta-resena__cancion {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tarjeta-resena__artista {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.tarjeta-resena__nota {
+  display: inline-block;
+  background: linear-gradient(90deg, #e94560, #f5a623);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.tarjeta-resena__texto {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.tarjeta-resena__autor {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+}

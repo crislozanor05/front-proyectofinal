@@ -30,6 +30,7 @@
 .cabecera__saludo {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
+  padding: 2rem;
 }
 
 .cabecera__link {
@@ -39,6 +40,7 @@
   padding: 8px 16px;
   border-radius: 20px;
   transition: background 0.2s;
+  margin: 0.8rem;
 }
 
 .cabecera__link:hover {

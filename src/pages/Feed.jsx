@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { obtenerResenas } from "../services/api";
+import { obtenerResenas, borrarResena } from "../services/api";
 import "./Feed.css";
 
 function Feed({ usuario }) {
@@ -28,6 +28,23 @@ function Feed({ usuario }) {
     return <p className="feed__error">Error: {error}</p>;
   }
 
+  function handleBorrarResena(resenaId) {
+  let confirmado = window.confirm("¿Seguro que quieres borrar esta reseña?");
+  if (!confirmado) return;
+
+  borrarResena(usuario._id, resenaId)
+    .then(function () {
+      // Quitamos la reseña del array sin recargar, igual que con los compositores
+      let nuevasResenas = resenas.filter(function (r) {
+        return r._id !== resenaId;
+      });
+      setResenas(nuevasResenas);
+    })
+    .catch(function (err) {
+      alert(err.message);
+    });
+}
+
   return (
     <main className="feed">
       <h1 className="feed__titulo">Feed de reseñas</h1>
@@ -42,18 +59,27 @@ function Feed({ usuario }) {
       ) : (
         <ul className="feed__lista">
           {resenas.map(function (resena) {
-            return (
-              <li key={resena._id}>
-                <Link to={"/resena/" + resena._id} className="tarjeta-resena">
-                  <h2 className="tarjeta-resena__cancion">{resena.cancion}</h2>
-                  <p className="tarjeta-resena__artista">{resena.artista}</p>
-                  <span className="tarjeta-resena__nota">⭐ {resena.nota}/5</span>
-                  <p className="tarjeta-resena__texto">{resena.texto}</p>
-                  <small className="tarjeta-resena__autor">Por {resena.nombreUsuario}</small>
-                </Link>
-              </li>
-            );
-          })}
+  return (
+    <li key={resena._id}>
+      <Link to={"/resena/" + resena._id} className="tarjeta-resena">
+        <h2 className="tarjeta-resena__cancion">{resena.cancion}</h2>
+        <p className="tarjeta-resena__artista">{resena.artista}</p>
+        <span className="tarjeta-resena__nota">⭐ {resena.nota}/5</span>
+        <p className="tarjeta-resena__texto">{resena.texto}</p>
+        <small className="tarjeta-resena__autor">Por {resena.nombreUsuario}</small>
+      </Link>
+
+      {usuario !== null && usuario._id === resena.usuarioId && (
+        <button
+          className="boton-borrar"
+          onClick={function () { handleBorrarResena(resena._id); }}
+        >
+          Borrar reseña
+        </button>
+      )}
+    </li>
+  );
+})}
         </ul>
       )}
     </main>

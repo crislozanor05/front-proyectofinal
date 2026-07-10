@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { obtenerResena, obtenerComentarios, crearComentario } from "../services/api";
+import { obtenerResena, obtenerComentarios, crearComentario, borrarComentario } from "../services/api";
 import "./DetalleResena.css";
 
 function DetalleResena({ usuario }) {
@@ -50,6 +50,22 @@ function DetalleResena({ usuario }) {
     return <p className="feed__error">Error: {error}</p>;
   }
 
+  function handleBorrarComentario(comentarioId) {
+  let confirmado = window.confirm("¿Seguro que quieres borrar este comentario?");
+  if (!confirmado) return;
+
+  borrarComentario(usuario._id, comentarioId)
+    .then(function () {
+      let nuevosComentarios = comentarios.filter(function (c) {
+        return c._id !== comentarioId;
+      });
+      setComentarios(nuevosComentarios);
+    })
+    .catch(function (err) {
+      alert(err.message);
+    });
+}
+
   return (
     <main className="detalle">
       <Link to="/" className="detalle__volver">← Volver al feed</Link>
@@ -72,13 +88,22 @@ function DetalleResena({ usuario }) {
 
       <ul className="comentarios__lista">
         {comentarios.map(function (comentario) {
-          return (
-            <li key={comentario._id} className="comentario">
-              <p className="comentario__autor">{comentario.nombreUsuario}</p>
-              <p className="comentario__texto">{comentario.texto}</p>
-            </li>
-          );
-        })}
+  return (
+    <li key={comentario._id} className="comentario">
+      <p className="comentario__autor">{comentario.nombreUsuario}</p>
+      <p className="comentario__texto">{comentario.texto}</p>
+
+      {usuario !== null && usuario._id === comentario.usuarioId && (
+        <button
+          className="boton-borrar"
+          onClick={function () { handleBorrarComentario(comentario._id); }}
+        >
+          Borrar
+        </button>
+      )}
+    </li>
+  );
+})}
       </ul>
 
       {usuario !== null ? (

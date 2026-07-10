@@ -77,3 +77,18 @@ export function crearComentario(userId, resenaId, texto) {
     body: JSON.stringify({ resenaId, texto }),
   });
 }
+
+
+export function borrarResena(userId, resenaId) {
+  return peticion("/resenas/" + resenaId, {
+    method: "DELETE",
+    headers: { "x-user-id": userId },
+  });
+}
+
+export function borrarComentario(userId, comentarioId) {
+  return peticion("/comentarios/" + comentarioId, {
+    method: "DELETE",
+    headers: { "x-user-id": userId },
+  });
+}

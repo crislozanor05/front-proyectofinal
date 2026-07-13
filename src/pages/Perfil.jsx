@@ -52,53 +52,13 @@ function Perfil({ usuario, cerrarSesion }) {
   }
 
   return (
-   <main className="perfil">
+    <main className="perfil">
       <h1 className="perfil__titulo">Mi perfil</h1>
 
       <div className="perfil__tarjeta">
         <p className="perfil__dato">
           Usuario: <span>{usuario.username}</span>
         </p>
-
-        <hr className="perfil__separador" />
-
-        {!editando ? (
-          <button
-            className="perfil__boton-editar"
-            onClick={function () { setEditando(true); }}
-          >
-            Cambiar nombre de usuario
-          </button>
-        ) : (
-          <form onSubmit={handleCambiarUsername} className="perfil__form">
-            <label>Nuevo nombre de usuario</label>
-            <input
-              type="text"
-              value={nuevoUsername}
-              onChange={function (e) { setNuevoUsername(e.target.value); }}
-              placeholder="Escribe el nuevo nombre"
-            />
-            <div className="perfil__form-botones">
-              <button className="perfil__boton-guardar" type="submit">
-                Guardar
-              </button>
-              <button
-                className="perfil__boton-cancelar"
-                type="button"
-                onClick={function () {
-                  setEditando(false);
-                  setNuevoUsername("");
-                  setError("");
-                }}
-              >
-                Cancelar
-              </button>
-            </div>
-            {error !== "" && <p className="perfil__error">{error}</p>}
-          </form>
-        )}
-
-        {exito !== "" && <p className="perfil__exito">{exito}</p>}
       </div>
 
       <div className="perfil__zona-peligro">
@@ -110,6 +70,7 @@ function Perfil({ usuario, cerrarSesion }) {
         >
           Eliminar mi cuenta
         </button>
+        {error !== "" && <p className="perfil__error">{error}</p>}
       </div>
     </main>
   );

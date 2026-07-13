@@ -40,6 +40,16 @@ function App() {
         <Route path="/nueva-resena" element={<NuevaResena usuario={usuario} />} />
         <Route path="/resena/:id" element={<DetalleResena usuario={usuario} />} />
         <Route path="/perfil" element={<Perfil usuario={usuario} cerrarSesion={cerrarSesion} />} />
+        <Route
+  path="/perfil"
+  element={
+    <Perfil
+      usuario={usuario}
+      cerrarSesion={cerrarSesion}
+      iniciarSesion={iniciarSesion}
+    />
+  }
+/>
       </Routes>
     </BrowserRouter>
   );

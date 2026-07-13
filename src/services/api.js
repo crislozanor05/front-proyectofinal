@@ -39,6 +39,16 @@ export function eliminarCuenta(userId) {
     headers: { "x-user-id": userId },
   });
 }
+export function actualizarUsername(userId, nuevoUsername) {
+  return peticion("/usuarios/" + userId, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "x-user-id": userId,
+    },
+    body: JSON.stringify({ username: nuevoUsername }),
+  });
+}
 
 // --- Reseñas ---
 

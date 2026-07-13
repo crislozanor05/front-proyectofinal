@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { eliminarCuenta, actualizarUsername } from "../services/api";
+import { eliminarCuenta} from "../services/api";
 import "./Perfil.css";
 
 function Perfil({ usuario, cerrarSesion }) {
@@ -14,24 +14,7 @@ function Perfil({ usuario, cerrarSesion }) {
       </main>
     );
   }
-   function handleCambiarUsername(event) {
-    event.preventDefault();
-    setError("");
-    setExito("");
-
-    actualizarUsername(usuario._id, nuevoUsername)
-      .then(function (datos) {
-        // Actualizamos el usuario en el estado de App y en localStorage
-        iniciarSesion(datos.usuario);
-        setEditando(false);
-        setNuevoUsername("");
-        setExito("Nombre de usuario actualizado correctamente");
-      })
-      .catch(function (err) {
-        setError(err.message);
-      });
-  }
-
+   
   function handleEliminarCuenta() {
     let confirmado = window.confirm(
       "¿Estás seguro? Se eliminarán tu cuenta, tus reseñas y tus comentarios."

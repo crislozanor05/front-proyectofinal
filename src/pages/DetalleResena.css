@@ -4,9 +4,33 @@
   padding: 40px 20px;
 }
 
+/* ==========================================================================
+   Contenedor de la cabecera (Portada + Textos de canción y artista)
+   ========================================================================== */
+.detalle__cabecera {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Imagen de la portada con aspecto imponente */
+.detalle__portada {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.detalle__info {
+  flex-grow: 1;
+}
+
 .detalle__cancion {
   font-size: 2rem;
-  margin-bottom: 4px;
+  margin: 0;
   background: linear-gradient(90deg, #e94560, #f5a623);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -16,7 +40,7 @@
 .detalle__artista {
   color: rgba(255, 255, 255, 0.6);
   font-size: 1.1rem;
-  margin-bottom: 16px;
+  margin: 4px 0 0 0;
 }
 
 .detalle__nota {
@@ -37,6 +61,7 @@
 }
 
 .detalle__autor {
+  display: block;
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.85rem;
 }
@@ -123,4 +148,13 @@
 
 .detalle__volver:hover {
   color: #f5a623;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 480px) {
+  .detalle__cabecera {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
 }

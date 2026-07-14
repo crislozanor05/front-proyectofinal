@@ -51,27 +51,40 @@ function DetalleResena({ usuario }) {
   }
 
   function handleBorrarComentario(comentarioId) {
-  let confirmado = window.confirm("¿Seguro que quieres borrar este comentario?");
-  if (!confirmado) return;
+    let confirmado = window.confirm("¿Seguro que quieres borrar este comentario?");
+    if (!confirmado) return;
 
-  borrarComentario(usuario._id, comentarioId)
-    .then(function () {
-      let nuevosComentarios = comentarios.filter(function (c) {
-        return c._id !== comentarioId;
+    borrarComentario(usuario._id, comentarioId)
+      .then(function () {
+        let nuevosComentarios = comentarios.filter(function (c) {
+          return c._id !== comentarioId;
+        });
+        setComentarios(nuevosComentarios);
+      })
+      .catch(function (err) {
+        alert(err.message);
       });
-      setComentarios(nuevosComentarios);
-    })
-    .catch(function (err) {
-      alert(err.message);
-    });
-}
+  }
 
   return (
     <main className="detalle">
       <Link to="/" className="detalle__volver">← Volver al feed</Link>
 
-      <h1 className="detalle__cancion">{resena.cancion}</h1>
-      <p className="detalle__artista">{resena.artista}</p>
+      {/* Cabecera de la canción organizada */}
+      <div className="detalle__cabecera">
+        {resena.portada && (
+          <img 
+            className="detalle__portada" 
+            src={resena.portada} 
+            alt={resena.cancion} 
+          />
+        )}
+        <div className="detalle__info">
+          <h1 className="detalle__cancion">{resena.cancion}</h1>
+          <p className="detalle__artista">{resena.artista}</p>
+        </div>
+      </div>
+
       <span className="detalle__nota">⭐ {resena.nota}/5</span>
       <p className="detalle__texto">{resena.texto}</p>
       <small className="detalle__autor">Por {resena.nombreUsuario}</small>
@@ -88,22 +101,22 @@ function DetalleResena({ usuario }) {
 
       <ul className="comentarios__lista">
         {comentarios.map(function (comentario) {
-  return (
-    <li key={comentario._id} className="comentario">
-      <p className="comentario__autor">{comentario.nombreUsuario}</p>
-      <p className="comentario__texto">{comentario.texto}</p>
+          return (
+            <li key={comentario._id} className="comentario">
+              <p className="comentario__autor">{comentario.nombreUsuario}</p>
+              <p className="comentario__texto">{comentario.texto}</p>
 
-      {usuario !== null && usuario._id === comentario.usuarioId && (
-        <button
-          className="boton-borrar"
-          onClick={function () { handleBorrarComentario(comentario._id); }}
-        >
-          Borrar
-        </button>
-      )}
-    </li>
-  );
-})}
+              {usuario !== null && usuario._id === comentario.usuarioId && (
+                <button
+                  className="boton-borrar"
+                  onClick={function () { handleBorrarComentario(comentario._id); }}
+                >
+                  Borrar
+                </button>
+              )}
+            </li>
+          );
+        })}
       </ul>
 
       {usuario !== null ? (

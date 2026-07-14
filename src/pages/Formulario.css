@@ -70,3 +70,134 @@
   color: #f5a623;
   font-weight: 600;
 }
+
+/* ==========================================================================
+   Nuevos estilos para el Buscador de Deezer (Separados de los componentes)
+   ========================================================================== */
+
+/* Contenedor de input + botón de buscar */
+.buscador-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.buscador-inline input {
+  flex-grow: 1;
+}
+
+.buscador-inline .formulario__boton {
+  margin-top: 0;
+  padding: 0 20px;
+  width: auto;
+}
+
+/* Texto informativo de carga */
+.buscador-cargando {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 15px 0;
+}
+
+/* Lista de resultados de Deezer */
+.buscador-resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Tarjeta individual de canción en la búsqueda */
+.cancion-tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.cancion-tarjeta:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.cancion-tarjeta__portada {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.cancion-tarjeta__info {
+  text-align: left;
+}
+
+.cancion-tarjeta__titulo {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.cancion-tarjeta__detalles {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cancion-tarjeta__album {
+  font-style: italic;
+}
+
+/* Tarjeta de la canción seleccionada para reseñar (Paso 2) */
+.seleccionada-tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  background: rgba(233, 69, 96, 0.15);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.seleccionada-tarjeta__portada {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.seleccionada-tarjeta__info {
+  flex-grow: 1;
+}
+
+.seleccionada-tarjeta__titulo {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.seleccionada-tarjeta__artista {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.seleccionada-tarjeta__boton-cambiar {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.seleccionada-tarjeta__boton-cambiar:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

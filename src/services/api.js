@@ -41,6 +41,14 @@ export function eliminarCuenta(userId) {
 }
 
 // --- Reseñas ---
+export function buscarEnDeezer(query) {
+  return fetch(`${API_URL}/buscador/canciones?q=${encodeURIComponent(query)}`)
+    .then(async function (res) {
+      const datos = await res.json();
+      if (!res.ok) throw new Error(datos.mensaje || "Error al buscar");
+      return datos;
+    });
+}
 
 export function obtenerResenas() {
   return peticion("/resenas");
@@ -51,13 +59,24 @@ export function obtenerResena(id) {
 }
 
 export function crearResena(userId, datosResena) {
-  return peticion("/resenas", {
+  return fetch(`${API_URL}/resenas`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "x-user-id": userId,
     },
-    body: JSON.stringify(datosResena),
+    body: JSON.stringify({
+      cancion: datosResena.cancion,
+      artista: datosResena.artista,
+      nota: datosResena.nota,
+      texto: datosResena.texto,
+      deezerId: datosResena.deezerId, // <-- Mandamos el ID del track
+      portada: datosResena.portada,   // <-- Mandamos la URL de la carátula
+    }),
+  }).then(async function (res) {
+    const datos = await res.json();
+    if (!res.ok) throw new Error(datos.mensaje || "Error al crear la reseña");
+    return datos;
   });
 }
 

@@ -33,7 +33,7 @@ function NuevaResena({ usuario }) {
     setBuscando(true);
     setError("");
 
-    fetch(`http://localhost:3001/buscador/canciones?q=${encodeURIComponent(terminoBusqueda)}`)
+    fetch(`${process.env.REACT_APP_API_URL}/buscador/canciones?q=${encodeURIComponent(terminoBusqueda)}`)
       .then(async function (res) {
         const datos = await res.json();
         if (!res.ok) throw new Error(datos.mensaje || "Error al buscar canciones");

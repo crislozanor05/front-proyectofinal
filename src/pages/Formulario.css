@@ -71,11 +71,7 @@
   font-weight: 600;
 }
 
-/* ==========================================================================
-   Nuevos estilos para el Buscador de Deezer (Separados de los componentes)
-   ========================================================================== */
 
-/* Contenedor de input + botón de buscar */
 .buscador-inline {
   display: flex;
   gap: 10px;
@@ -91,14 +87,14 @@
   width: auto;
 }
 
-/* Texto informativo de carga */
+
 .buscador-cargando {
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
   margin: 15px 0;
 }
 
-/* Lista de resultados de Deezer */
+
 .buscador-resultados {
   display: flex;
   flex-direction: column;
@@ -106,7 +102,7 @@
   margin-top: 15px;
 }
 
-/* Tarjeta individual de canción en la búsqueda */
+
 .cancion-tarjeta {
   display: flex;
   align-items: center;
@@ -152,7 +148,7 @@
   font-style: italic;
 }
 
-/* Tarjeta de la canción seleccionada para reseñar (Paso 2) */
+
 .seleccionada-tarjeta {
   display: flex;
   align-items: center;

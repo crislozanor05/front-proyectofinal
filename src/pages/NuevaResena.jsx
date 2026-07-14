@@ -84,7 +84,7 @@ function NuevaResena({ usuario }) {
 
       {error !== "" && <p className="formulario__error">{error}</p>}
 
-      {/* --- PASO A: BUSCADOR DE CANCIONES --- */}
+      {}
       {!cancionSeleccionada ? (
         <div>
           <form className="formulario" onSubmit={handleBuscar}>
@@ -133,7 +133,7 @@ function NuevaResena({ usuario }) {
           </div>
         </div>
       ) : (
-        /* --- PASO B: FORMULARIO DE RESEÑA --- */
+        
         <form className="formulario" onSubmit={handleSubmit}>
           
           <div className="seleccionada-tarjeta">

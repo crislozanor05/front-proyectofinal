@@ -1,68 +1,68 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { obtenerResenas, borrarResena } from "../services/api"; //[cite: 15]
+import { obtenerResenas, borrarResena } from "../services/api"; 
 import "./Feed.css";
 
 function Feed({ usuario }) {
-  let [resenas, setResenas] = useState([]); //[cite: 15]
-  let [cargando, setCargando] = useState(true); //[cite: 15]
-  let [error, setError] = useState(""); //[cite: 15]
+  let [resenas, setResenas] = useState([]); 
+  let [cargando, setCargando] = useState(true); 
+  let [error, setError] = useState(""); 
 
   useEffect(function () {
-    obtenerResenas() //[cite: 15]
+    obtenerResenas() 
       .then(function (datos) {
-        setResenas(datos); //[cite: 15]
-        setCargando(false); //[cite: 15]
+        setResenas(datos); 
+        setCargando(false); 
       })
       .catch(function (err) {
-        setError(err.message); //[cite: 15]
-        setCargando(false); //[cite: 15]
+        setError(err.message); 
+        setCargando(false); 
       });
   }, []);
 
   if (cargando) {
-    return <p className="feed__cargando">Cargando reseñas...</p>; //[cite: 15]
+    return <p className="feed__cargando">Cargando reseñas...</p>; 
   }
 
   if (error !== "") {
-    return <p className="feed__error">Error: {error}</p>; //[cite: 15]
+    return <p className="feed__error">Error: {error}</p>; 
   }
 
   function handleBorrarResena(resenaId) {
-    let confirmado = window.confirm("¿Seguro que quieres borrar esta reseña?"); //[cite: 15]
-    if (!confirmado) return; //[cite: 15]
+    let confirmado = window.confirm("¿Seguro que quieres borrar esta reseña?"); 
+    if (!confirmado) return; 
 
-    borrarResena(usuario._id, resenaId) //[cite: 15]
+    borrarResena(usuario._id, resenaId) 
       .then(function () {
-        let nuevasResenas = resenas.filter(function (r) { //[cite: 15]
-          return r._id !== resenaId; //[cite: 15]
+        let nuevasResenas = resenas.filter(function (r) { 
+          return r._id !== resenaId; 
         });
-        setResenas(nuevasResenas); //[cite: 15]
+        setResenas(nuevasResenas); 
       })
       .catch(function (err) {
-        alert(err.message); //[cite: 15]
+        alert(err.message); 
       });
   }
 
   return (
     <main className="feed">
-      <h1 className="feed__titulo">Feed de reseñas</h1> {/*[cite: 15] */}
+      <h1 className="feed__titulo">Feed de reseñas</h1> {}
       <p className="feed__subtitulo">
-        {usuario !== null //[cite: 15]
-          ? "¿Qué estás escuchando?" //[cite: 15]
-          : "Inicia sesión para publicar tu propia reseña"} {/*[cite: 15] */}
+        {usuario !== null 
+          ? "¿Qué estás escuchando?" 
+          : "Inicia sesión para publicar tu propia reseña"} {}
       </p>
 
       {resenas.length === 0 ? (
-        <p className="feed__vacio">Todavía no hay reseñas. ¡Sé el primero!</p> //[cite: 15]
+        <p className="feed__vacio">Todavía no hay reseñas. ¡Sé el primero!</p> 
       ) : (
-        <ul className="feed__lista"> {/*[cite: 15] */}
+        <ul className="feed__lista"> {}
           {resenas.map(function (resena) {
             return (
               <li key={resena._id} className="feed__elemento">
                 <Link to={"/resena/" + resena._id} className="tarjeta-resena">
                   
-                  {/* Portada de la canción (Si existe) */}
+                  {}
                   {resena.portada && (
                     <img 
                       className="tarjeta-resena__portada" 
@@ -73,21 +73,21 @@ function Feed({ usuario }) {
 
                   {/* Bloque de contenido */}
                   <div className="tarjeta-resena__contenido">
-                    <h2 className="tarjeta-resena__cancion">{resena.cancion}</h2> {/*[cite: 15] */}
-                    <p className="tarjeta-resena__artista">{resena.artista}</p> {/*[cite: 15] */}
-                    <span className="tarjeta-resena__nota">⭐ {resena.nota}/5</span> {/*[cite: 15] */}
-                    <p className="tarjeta-resena__texto">{resena.texto}</p> {/*[cite: 15] */}
-                    <small className="tarjeta-resena__autor">Por {resena.nombreUsuario}</small> {/*[cite: 15] */}
+                    <h2 className="tarjeta-resena__cancion">{resena.cancion}</h2> {}
+                    <p className="tarjeta-resena__artista">{resena.artista}</p> {}
+                    <span className="tarjeta-resena__nota">⭐ {resena.nota}/5</span> {}
+                    <p className="tarjeta-resena__texto">{resena.texto}</p> {}
+                    <small className="tarjeta-resena__autor">Por {resena.nombreUsuario}</small> {}
                   </div>
                 </Link>
 
-                {usuario !== null && usuario._id === resena.usuarioId && ( //[cite: 15]
+                {usuario !== null && usuario._id === resena.usuarioId && ( 
                   <button
                     className="boton-borrar"
-                    onClick={function () { handleBorrarResena(resena._id); }} //[cite: 15]
+                    onClick={function () { handleBorrarResena(resena._id); }} 
                   >
                     Borrar reseña
-                  </button> //[cite: 15]
+                  </button> 
                 )}
               </li>
             );

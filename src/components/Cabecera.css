@@ -22,12 +22,12 @@
   letter-spacing: 0.05em;
 }
 
-/* Contenedor de elementos que se quedan fijos en el navbar */
+
 .cabecera__visibles-movil {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-left: auto; /* Empuja esto hacia la derecha */
+  margin-left: auto; 
   margin-right: 16px;
 }
 
@@ -52,7 +52,7 @@
   transform: translateY(-1px);
 }
 
-/* Enlaces normales */
+
 .cabecera__nav {
   display: flex;
   align-items: center;
@@ -89,7 +89,7 @@
   color: #fff;
 }
 
-/* Botón Hamburguesa (Oculto por defecto en ordenadores) */
+
 .cabecera__hamburguesa {
   display: none;
   flex-direction: column;
@@ -111,7 +111,7 @@
   transition: all 0.3s ease;
 }
 
-/* Transformaciones para convertir las 3 rayas en una 'X' al abrir */
+
 .cabecera__hamburguesa--activo .barra:nth-child(1) {
   transform: translateY(7.5px) rotate(45deg);
 }
@@ -125,18 +125,16 @@
 }
 
 
-/* ==========================================================================
-   DISEÑO RESPONSIVE MÓVIL (Menos de 768px)
-   ========================================================================== */
+
 @media (max-width: 768px) {
   .cabecera__hamburguesa {
-    display: flex; /* Mostramos la hamburguesa */
+    display: flex; 
   }
 
-  /* El menú de enlaces se convierte en un panel desplegable desde arriba */
+  
   .cabecera__nav {
     position: absolute;
-    top: 100%; /* Justo debajo de la cabecera */
+    top: 100%; 
     left: 0;
     width: 100%;
     background: rgba(26, 26, 46, 0.95);
@@ -147,14 +145,14 @@
     padding: 24px;
     gap: 16px;
     
-    /* Efecto ocultar/mostrar */
+    
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s ease;
   }
 
-  /* Clase activa que inyecta React cuando menuAbierto es true */
+  
   .cabecera__nav--abierto {
     opacity: 1;
     visibility: visible;
@@ -169,14 +167,14 @@
     font-size: 1rem;
   }
 
-  /* Reducimos sutilmente el saludo en móvil para que quepa todo bien */
+  
   .cabecera__saludo {
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 400px) {
-  /* Si la pantalla es extremadamente pequeña, ocultamos el texto del saludo para no saturar */
+  
   .cabecera__saludo {
     display: none;
   }

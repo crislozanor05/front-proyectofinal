@@ -20,19 +20,19 @@ function Cabecera({ usuario, cerrarSesion }) {
         MusicBox
       </Link>
 
-      {/* Bloque central/derecho que SÍ se ve en móvil por defecto */}
+      {}
       <div className="cabecera__visibles-movil">
         {usuario && (
           <>
             <span className="cabecera__saludo">Hola, {usuario.username}</span>
             <Link to="/nueva-resena" className="cabecera__boton-publicar" onClick={cerrarMenu}>
-              Publicar reseña
+              Publicar
             </Link>
           </>
         )}
       </div>
 
-      {/* Botón de Hamburguesa (Solo visible en móviles) */}
+      {}
       <button 
         className={`cabecera__hamburguesa ${menuAbierto ? "cabecera__hamburguesa--activo" : ""}`} 
         onClick={toggleMenu}
@@ -43,7 +43,7 @@ function Cabecera({ usuario, cerrarSesion }) {
         <span className="barra"></span>
       </button>
 
-      {/* Navegación (Se convierte en menú desplegable en móviles) */}
+      {}
       <nav className={`cabecera__nav ${menuAbierto ? "cabecera__nav--abierto" : ""}`}>
         <Link to="/" className="cabecera__link" onClick={cerrarMenu}>
           Inicio

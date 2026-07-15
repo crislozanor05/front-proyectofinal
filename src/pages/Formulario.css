@@ -197,3 +197,26 @@
 .seleccionada-tarjeta__boton-cambiar:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+@media (max-width: 480px) {
+  .formulario-pagina {
+    margin: 30px auto;
+    padding: 0 12px;
+  }
+
+  .formulario-pagina__titulo {
+    font-size: 1.6rem;
+  }
+
+  .formulario {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  
+  .seleccionada-tarjeta {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+}

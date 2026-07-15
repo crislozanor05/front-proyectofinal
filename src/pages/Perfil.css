@@ -104,3 +104,23 @@
   padding: 20px 0;
   font-size: 1.1rem;
 }
+
+@media (max-width: 600px) {
+  .perfil {
+    margin: 30px auto;
+    padding: 0 12px;
+  }
+
+  .perfil__titulo {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .perfil__tarjeta {
+    padding: 20px;
+  }
+
+  .perfil__zona-peligro {
+    padding: 16px;
+  }
+}

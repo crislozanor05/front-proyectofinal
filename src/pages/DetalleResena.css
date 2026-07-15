@@ -148,11 +148,28 @@
   color: #f5a623;
 }
 
-/* Adaptación para pantallas pequeñas */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .detalle {
+    padding: 24px 12px;
+  }
+
   .detalle__cabecera {
     flex-direction: column;
     text-align: center;
-    gap: 15px;
+    gap: 16px;
+  }
+
+  .detalle__portada {
+    width: 140px;
+    height: 140px;
+  }
+
+  .detalle__cancion {
+    font-size: 1.6rem;
+  }
+
+  /* El formulario de comentarios se ajusta para aprovechar el ancho */
+  .comentarios__form textarea {
+    padding: 12px;
   }
 }

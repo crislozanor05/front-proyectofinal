@@ -17,7 +17,7 @@ function Cabecera({ usuario, cerrarSesion }) {
   return (
     <header className="cabecera">
       <Link to="/" className="cabecera__logo" onClick={cerrarMenu}>
-        MusicApp
+        MusicBox
       </Link>
 
       {/* Bloque central/derecho que SÍ se ve en móvil por defecto */}

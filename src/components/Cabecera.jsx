@@ -25,7 +25,7 @@ function Cabecera({ usuario, cerrarSesion }) {
         {usuario && (
           <>
             <span className="cabecera__saludo">Hola, {usuario.username}</span>
-            <Link to="/nueva" className="cabecera__boton-publicar" onClick={cerrarMenu}>
+            <Link to="/nueva-resena" className="cabecera__boton-publicar" onClick={cerrarMenu}>
               Publicar reseña
             </Link>
           </>

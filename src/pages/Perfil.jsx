@@ -2,15 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { eliminarCuenta, obtenerResenas, borrarResena } from "../services/api";
 import "./Perfil.css";
-import "./Feed.css"; // Importante: Reutiliza los estilos que ya creaste para las tarjetas del Feed
-
+import "./Feed.css"; 
 function Perfil({ usuario, cerrarSesion }) {
   let [misResenas, setMisResenas] = useState([]);
   let [cargando, setCargando] = useState(true);
   let [error, setError] = useState("");
   let navigate = useNavigate();
 
-  // 1. Efecto para obtener y filtrar las reseñas del usuario activo
+  
   useEffect(
     function () {
       if (usuario === null) return;
@@ -40,7 +39,7 @@ function Perfil({ usuario, cerrarSesion }) {
     );
   }
 
-  // 2. Función para eliminar la cuenta entera
+
   function handleEliminarCuenta() {
     let confirmado = window.confirm(
       "¿Estás seguro? Se eliminarán tu cuenta, tus reseñas y tus comentarios."
@@ -58,7 +57,7 @@ function Perfil({ usuario, cerrarSesion }) {
       });
   }
 
-  // 3. Función para borrar una sola reseña directamente desde el perfil
+  
   function handleBorrarResena(resenaId) {
     let confirmado = window.confirm("¿Seguro que quieres borrar esta reseña?");
     if (!confirmado) return;
@@ -89,7 +88,7 @@ function Perfil({ usuario, cerrarSesion }) {
         </p>
       </div>
 
-      {/* --- NUEVA SECCIÓN: MIS RESEÑAS --- */}
+      {}
       <section className="perfil__resenas-seccion">
         <h2 className="perfil__seccion-titulo">Mis reseñas</h2>
 
@@ -104,7 +103,7 @@ function Perfil({ usuario, cerrarSesion }) {
                 <li key={resena._id} className="feed__elemento">
                   <Link to={"/resena/" + resena._id} className="tarjeta-resena">
                     
-                    {/* Si guardas la imagen de Deezer, se pintará aquí */}
+                    {}
                     {resena.portada && (
                       <img 
                         className="tarjeta-resena__portada" 
@@ -136,7 +135,7 @@ function Perfil({ usuario, cerrarSesion }) {
 
       <hr className="perfil__separador" />
 
-      {/* --- ZONA DE PELIGRO --- */}
+      {}
       <div className="perfil__zona-peligro">
         <h2>Zona de peligro</h2>
         <p>Esta acción es irreversible. Se eliminarán tu cuenta, tus reseñas y tus comentarios.</p>

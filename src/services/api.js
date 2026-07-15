@@ -80,6 +80,23 @@ export function crearResena(userId, datosResena) {
   });
 }
 
+
+export function toggleLike(userId, resenaId) {
+  return fetch(`${process.env.REACT_APP_API_URL}/resenas/${resenaId}/like`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "x-user-id": userId,
+    },
+  }).then(async function (res) {
+    let datos = await res.json();
+    if (!res.ok) {
+      throw new Error(datos.mensaje || "Error al dar like");
+    }
+    return datos; // Nos devolverá { likes: [...] }
+  });
+}
+
 // --- Comentarios ---
 
 export function obtenerComentarios(resenaId) {

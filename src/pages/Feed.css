@@ -123,6 +123,47 @@
   margin-top: 10px;
 }
 
+.tarjeta-resena__interaccion {
+  display: flex;
+  align-items: center;
+}
+
+.boton-like {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.boton-like:hover {
+  background: rgba(233, 69, 96, 0.1);
+  border-color: rgba(233, 69, 96, 0.4);
+  transform: scale(1.05);
+}
+
+.boton-like--activo {
+  background: rgba(233, 69, 96, 0.15);
+  border-color: #e94560;
+  color: #e94560;
+}
+
+.boton-like__contador {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.boton-like--activo .boton-like__contador {
+  color: #fff;
+  font-weight: 700;
+}
+
 
 @media (max-width: 550px) {
   .feed {

@@ -83,9 +83,12 @@ function Feed({ usuario }) {
           {}
           {resenas.map(function (resena) {
             return (
-              <li key={resena._id} className="feed__elemento">
+              <li
+                key={resena._id}
+                className="feed__elemento tarjeta-resena-contenedor"
+              >
+                {/* 1. Enlace al detalle que envuelve la portada y los textos */}
                 <Link to={"/resena/" + resena._id} className="tarjeta-resena">
-                  {}
                   {resena.portada && (
                     <img
                       className="tarjeta-resena__portada"
@@ -94,37 +97,29 @@ function Feed({ usuario }) {
                     />
                   )}
 
-                  {/* Bloque de contenido */}
                   <div className="tarjeta-resena__contenido">
                     <h2 className="tarjeta-resena__cancion">
                       {resena.cancion}
-                    </h2>{" "}
-                    {}
-                    <p className="tarjeta-resena__artista">
-                      {resena.artista}
-                    </p>{" "}
-                    {}
+                    </h2>
+                    <p className="tarjeta-resena__artista">{resena.artista}</p>
                     <span className="tarjeta-resena__nota">
                       ⭐ {resena.nota}/5
-                    </span>{" "}
-                    {}
-                    <p className="tarjeta-resena__texto">{resena.texto}</p> {}
+                    </span>
+                    <p className="tarjeta-resena__texto">{resena.texto}</p>
                     <small className="tarjeta-resena__autor">
                       Por {resena.nombreUsuario}
-                    </small>{" "}
-                    {}
+                    </small>
                   </div>
                 </Link>
 
-                {/* Botón de Likes */}
-                <div
-                  className="tarjeta-resena__interaccion"
-                  style={{ padding: "0 24px 8px 24px" }}
-                >
+                {/* 2. Fila de interacción DENTRO de la tarjeta (aquí van el Like y el Borrar) */}
+                <div className="tarjeta-resena__acciones">
+                  {/* Botón de Likes */}
                   <button
                     type="button"
                     className={`boton-like ${resena.likes?.includes(usuario?._id) ? "boton-like--activo" : ""}`}
-                    onClick={function () {
+                    onClick={function (e) {
+                      e.preventDefault(); // Evita cualquier comportamiento extraño
                       handleLike(resena._id);
                     }}
                   >
@@ -133,17 +128,26 @@ function Feed({ usuario }) {
                       {resena.likes ? resena.likes.length : 0}
                     </span>
                   </button>
+
+                  {/* Botón de Borrar (si el usuario es el dueño) */}
+                  {usuario !== null && usuario._id === resena.usuarioId && (
+                    <button
+                      className="boton-borrar-tarjeta"
+                      onClick={function (e) {
+                        e.preventDefault();
+                        handleBorrarResena(resena._id);
+                      }}
+                    >
+                      Borrar
+                    </button>
+                  )}
                 </div>
 
-                {usuario !== null && usuario._id === resena.usuarioId && (
-                  <button
-                    className="boton-borrar"
-                    onClick={function () {
-                      handleBorrarResena(resena._id);
-                    }}
-                  >
-                    Borrar reseña
-                  </button>
+                {/* 3. Reproductor de Audio (si tiene previewUrl) */}
+                {resena.previewUrl && (
+                  <div className="contenedor-reproductor-tarjeta">
+                    <audio src={resena.previewUrl} controls />
+                  </div>
                 )}
               </li>
             );

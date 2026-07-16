@@ -52,7 +52,7 @@ function Feed({ usuario }) {
 
     toggleLike(usuario._id, resenaId)
       .then(function (datosActualizados) {
-        // Actualizamos el estado local de reseñas para que se pinte al instante
+        
         let resenasActualizadas = resenas.map(function (resena) {
           if (resena._id === resenaId) {
             return { ...resena, likes: datosActualizados.likes };
@@ -87,7 +87,7 @@ function Feed({ usuario }) {
                 key={resena._id}
                 className="feed__elemento tarjeta-resena-contenedor"
               >
-                {/* 1. Enlace al detalle que envuelve la portada y los textos */}
+                {}
                 <Link to={"/resena/" + resena._id} className="tarjeta-resena">
                   {resena.portada && (
                     <img
@@ -112,14 +112,14 @@ function Feed({ usuario }) {
                   </div>
                 </Link>
 
-                {/* 2. Fila de interacción DENTRO de la tarjeta (aquí van el Like y el Borrar) */}
+                {}
                 <div className="tarjeta-resena__acciones">
-                  {/* Botón de Likes */}
+                  {}
                   <button
                     type="button"
                     className={`boton-like ${resena.likes?.includes(usuario?._id) ? "boton-like--activo" : ""}`}
                     onClick={function (e) {
-                      e.preventDefault(); // Evita cualquier comportamiento extraño
+                      e.preventDefault(); 
                       handleLike(resena._id);
                     }}
                   >
@@ -129,7 +129,7 @@ function Feed({ usuario }) {
                     </span>
                   </button>
 
-                  {/* Botón de Borrar (si el usuario es el dueño) */}
+                  {}
                   {usuario !== null && usuario._id === resena.usuarioId && (
                     <button
                       className="boton-borrar-tarjeta"
@@ -143,7 +143,7 @@ function Feed({ usuario }) {
                   )}
                 </div>
 
-                {/* 3. Reproductor de Audio (si tiene previewUrl) */}
+                {}
                 {resena.previewUrl && (
                   <div className="contenedor-reproductor-tarjeta">
                     <audio src={resena.previewUrl} controls />

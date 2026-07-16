@@ -53,9 +53,7 @@
   padding: 16px;
 }
 
-/* ==========================================================================
-   NUEVA TARJETA CONTENEDORA (Integra contenido, interacciones y reproductor)
-   ========================================================================== */
+
 .tarjeta-resena-contenedor {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -72,7 +70,7 @@
   transform: translateY(-2px);
 }
 
-/* Enlace interno (Solo envuelve imagen y texto) */
+
 .tarjeta-resena {
   background: transparent !important;
   border: none !important;
@@ -139,9 +137,7 @@
 }
 
 
-/* ==========================================================================
-   ACCIONES (Fila inferior dentro de la tarjeta para Likes y Borrar)
-   ========================================================================== */
+
 .tarjeta-resena__acciones {
   display: flex;
   align-items: center;
@@ -151,7 +147,6 @@
   padding-top: 16px;
 }
 
-/* Botón de Like */
 .boton-like {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -188,7 +183,7 @@
   font-weight: 700;
 }
 
-/* Botón de Borrar Reseña Adaptado */
+
 .boton-borrar-tarjeta {
   background: rgba(233, 69, 96, 0.1);
   color: #e94560;
@@ -206,18 +201,6 @@
 }
 
 
-/* ==========================================================================
-   REPRODUCTOR DE AUDIO INTEGRADO
-   ========================================================================== */
-.contenedor-reproductor-tarjeta {
-  width: 100%;
-  margin-top: 4px;
-}
-
-.contenedor-reproductor-tarjeta audio {
-  width: 100%;
-  height: 32px;
-}
 
 
 @media (max-width: 550px) {
@@ -239,15 +222,10 @@
 
   .tarjeta-resena__portada {
     width: 120px;
-    height: 120px; /* Hacemos la portada un poco más grande al estar sola en el centro */
+    height: 120px; 
   }
 
   .tarjeta-resena__contenido {
     width: 100%;
-  }
-
-  /* Ajustamos el reproductor de audio para que no rompa el diseño */
-  .contenedor-reproductor {
-    padding: 0 16px 12px 16px !important;
   }
 }
